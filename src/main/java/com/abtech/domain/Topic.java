@@ -20,11 +20,8 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String name;
-
-    @Column(nullable = false)
-    private Boolean inUse = true;
 
     @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Quiz> quizSet;

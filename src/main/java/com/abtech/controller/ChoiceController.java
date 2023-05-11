@@ -60,7 +60,7 @@ public class ChoiceController {
         return ResponseEntity.ok(choiceDTO);
     }
 
-    @DeleteMapping("dlt") // Mod + Adm
+    @DeleteMapping("/dlt") // Mod + Adm
     public ResponseEntity<?> deleteChoice(@RequestParam("id") Long id) {
         choiceService.deleteChoice(id);
 
