@@ -1,8 +1,6 @@
-package com.abtech.domain.abstracts;
+package com.abtech.domain;
 
-
-import com.abtech.domain.Quiz;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.abtech.enums.QuestionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,14 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-@Entity
-@Table(name = "tbl_question_super")
+@MappedSuperclass
 public abstract class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "question_id")
     private Long id;
 
     @Column(nullable = false, length = 255)
@@ -30,11 +25,10 @@ public abstract class Question {
     private Integer score;
 
     @Column(nullable = false)
-    private Boolean inUse = true;
+    private Boolean inUse = false;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "quiz_id")
-    private Quiz quiz;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private QuestionType questionType;
 
 }

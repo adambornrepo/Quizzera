@@ -70,8 +70,10 @@ public class UserInfoService {
             throw new UniqueValueAlreadyExistException("Email is already in use : " + registrationDTO.getEmail());
         }
 
-        userInfoRepository.save(registrationDTO.buildUserInfo());
-        QuizUser save = quizUserRepository.save(registrationDTO.buildQuizUser());
+        UserInfo savedInfo = userInfoRepository.save(registrationDTO.buildUserInfo());
+        QuizUser quizUser = registrationDTO.buildQuizUser();
+        quizUser.setUserInfo(savedInfo);
+        QuizUser save = quizUserRepository.save(quizUser);
 
         return new QuizUserDTO(save);
     }

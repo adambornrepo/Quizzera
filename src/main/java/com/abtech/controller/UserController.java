@@ -6,7 +6,7 @@ import com.abtech.dto.UserInfoDTO;
 import com.abtech.service.QuizUserService;
 import com.abtech.service.UserInfoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -14,16 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    private QuizUserService quizUserService;
-    private UserInfoService userInfoService;
-
-    @Autowired
-    public UserController(QuizUserService quizUserService, UserInfoService userInfoService) {
-        this.quizUserService = quizUserService;
-        this.userInfoService = userInfoService;
-    }
+    private final QuizUserService quizUserService;
+    private final UserInfoService userInfoService;
 
     @GetMapping("/{uname}")
     public ResponseEntity<?> getQuizUserByUsername(@PathVariable("uname") String username) {

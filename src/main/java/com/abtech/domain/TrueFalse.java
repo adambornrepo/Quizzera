@@ -12,14 +12,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_fill_blank")
-public class FillBlank extends Question {
+@Table(name = "tbl_truefalse")
+public class TrueFalse extends Question {
 
-    @Column(length = 50)
-    private String answerText;
+    private boolean answer;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
+
+
+
 }

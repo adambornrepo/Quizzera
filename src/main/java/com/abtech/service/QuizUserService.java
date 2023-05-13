@@ -2,6 +2,7 @@ package com.abtech.service;
 
 import com.abtech.domain.QuizUser;
 import com.abtech.dto.QuizUserDTO;
+import com.abtech.exception.ResourceNotFoundException;
 import com.abtech.repository.QuizUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,9 @@ public class QuizUserService {
         return new QuizUserDTO(save);
     }
 
+    public QuizUser getUserById(Long id) {
+        return quizUserRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + id));
+    }
 }

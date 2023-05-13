@@ -1,6 +1,6 @@
 package com.abtech.domain;
 
-import com.abtech.domain.abstracts.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +13,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "tbl_open_end")
-@PrimaryKeyJoinColumn(name = "open_id", referencedColumnName = "question_id")
 public class OpenEnd extends Question {
 
-    @Column(length = 255)
-    private String answerText;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
+
 
 }

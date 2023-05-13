@@ -5,6 +5,7 @@ import com.abtech.dto.TopicDTO;
 import com.abtech.dto.TopicRecord;
 import com.abtech.service.TopicService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,14 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("tpc")
+@RequestMapping("/tpc")
+@RequiredArgsConstructor
 public class TopicController {
 
-    private TopicService topicService;
-
-    public TopicController(TopicService topicService) {
-        this.topicService = topicService;
-    }
+    private final TopicService topicService;
 
     @GetMapping
     public ResponseEntity<?> getAllTopics() {

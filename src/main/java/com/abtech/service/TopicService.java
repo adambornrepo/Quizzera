@@ -68,4 +68,10 @@ public class TopicService {
 
         topicRepository.delete(topic);
     }
+
+    public Topic getTopicById(Integer id) {
+        return topicRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Topic not found with this id : " + id));
+    }
 }
