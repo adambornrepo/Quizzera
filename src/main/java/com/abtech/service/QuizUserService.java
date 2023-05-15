@@ -4,20 +4,15 @@ import com.abtech.domain.QuizUser;
 import com.abtech.dto.QuizUserDTO;
 import com.abtech.exception.ResourceNotFoundException;
 import com.abtech.repository.QuizUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class QuizUserService {
 
-    private QuizUserRepository quizUserRepository;
-    private UserInfoService userInfoService;
-
-    @Autowired
-    public QuizUserService(QuizUserRepository quizUserRepository, UserInfoService userInfoService) {
-        this.quizUserRepository = quizUserRepository;
-        this.userInfoService = userInfoService;
-    }
+    private final QuizUserRepository quizUserRepository;
+    private final UserInfoService userInfoService;
 
     public QuizUserDTO getQuizUserByUsername(String username) {
         QuizUser quizUser = userInfoService.getQuizUserByUsername(username);

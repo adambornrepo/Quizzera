@@ -7,20 +7,17 @@ import com.abtech.exception.ConnectedResourceException;
 import com.abtech.exception.ResourceNotFoundException;
 import com.abtech.exception.UniqueValueAlreadyExistException;
 import com.abtech.repository.TopicRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TopicService {
-    private TopicRepository topicRepository;
 
-    @Autowired
-    public TopicService(TopicRepository topicRepository) {
-        this.topicRepository = topicRepository;
-    }
+    private final TopicRepository topicRepository;
 
     public List<TopicDTO> getAllTopics() {
         List<TopicDTO> topicDTOList = new ArrayList<>();
@@ -62,7 +59,7 @@ public class TopicService {
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No topic with this id : " + id));
 
-        if (!topic.getQuizSet().isEmpty()) {
+        if (!topic.getQuizList().isEmpty()) {
             throw new ConnectedResourceException("There are questions on this topic : " + topic.getName());
         }
 

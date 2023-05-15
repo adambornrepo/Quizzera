@@ -9,21 +9,17 @@ import com.abtech.exception.ResourceNotFoundException;
 import com.abtech.exception.UniqueValueAlreadyExistException;
 import com.abtech.repository.QuizUserRepository;
 import com.abtech.repository.UserInfoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
+@RequiredArgsConstructor
 public class UserInfoService {
 
-    private UserInfoRepository userInfoRepository;
-    private QuizUserRepository quizUserRepository;
+    private final UserInfoRepository userInfoRepository;
+    private final QuizUserRepository quizUserRepository;
 
-    @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository, QuizUserRepository quizUserRepository) {
-        this.userInfoRepository = userInfoRepository;
-        this.quizUserRepository = quizUserRepository;
-    }
 
     public UserInfoDTO getUserInfoByUsername(String username) {
 
@@ -34,7 +30,6 @@ public class UserInfoService {
         return new UserInfoDTO(userInfo);
     }
 
-    @Transactional
     public void updateUserInfo(String username, UserInfoDTO userInfoDTO) {
 
         boolean existsUsername = userInfoRepository.existsByUsername(userInfoDTO.getUsername());
@@ -59,7 +54,6 @@ public class UserInfoService {
         userInfoRepository.save(userInfo);
     }
 
-    @Transactional
     public QuizUserDTO createUser(RegistrationDTO registrationDTO) {
         boolean existsUsername = userInfoRepository.existsByUsername(registrationDTO.getUsername());
         boolean existsEmail = userInfoRepository.existsByEmail(registrationDTO.getEmail());
@@ -78,7 +72,7 @@ public class UserInfoService {
         return new QuizUserDTO(save);
     }
 
-    @Transactional
+
     public void deleteUser(String username) {
         UserInfo userInfo = userInfoRepository
                 .findByUsername(username)

@@ -16,7 +16,7 @@ import lombok.Setter;
 public class OpenEnd extends Question {
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 

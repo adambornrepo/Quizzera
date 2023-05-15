@@ -1,6 +1,7 @@
 package com.abtech.service;
 
 import com.abtech.domain.FillBlank;
+import com.abtech.domain.Quiz;
 import com.abtech.dto.FillBlankDTO;
 import com.abtech.exception.ConnectedResourceException;
 import com.abtech.exception.ResourceNotFoundException;
@@ -27,12 +28,13 @@ public class FillBlankService {
         return new FillBlankDTO(fillBlankRepository.save(fillBlank));
     }
 
-    public void updateFillBlankQuestion(Long id) {
+    public void updateFillBlankQuestion(Long id, Quiz quiz) {
 
         FillBlank fillBlank = getById(id);
 
         if (!fillBlank.getInUse()) {
             fillBlank.setInUse(true);
+            fillBlank.setQuiz(quiz);
             fillBlankRepository.save(fillBlank);
         } else {
             throw new ConnectedResourceException("This fillblank question already in use. Quiz Id : " + fillBlank.getQuiz().getId());
@@ -65,4 +67,10 @@ public class FillBlankService {
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("FillBlank question not found with this id : " + id));
     }
+
+    public boolean isValidRequest(List<Long> requestList){
+        for (Long id : requestList) if (getById(id).getInUse()) return false;
+        return true;
+    }
+
 }

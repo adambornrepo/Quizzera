@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -37,19 +38,19 @@ public class Quiz {
     private Boolean inUse = true;
 
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OpenEnd> openEndList;
+    private List<OpenEnd> openEndList = new ArrayList<>();
 
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MultipleChoice> multipleChoiceList;
+    private List<MultipleChoice> multipleChoiceList = new ArrayList<>();
 
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<FillBlank> fillBlankList;
+    private List<FillBlank> fillBlankList = new ArrayList<>();
 
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<TrueFalse> trueFalseList;
+    private List<TrueFalse> trueFalseList = new ArrayList<>();
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
     private Topic topic;
 
@@ -57,9 +58,8 @@ public class Quiz {
     private List<Score> scoreList;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quizUser_id", referencedColumnName = "id")
     private QuizUser quizUser;
-
 
 }

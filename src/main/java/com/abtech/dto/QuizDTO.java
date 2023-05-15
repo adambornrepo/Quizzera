@@ -21,38 +21,34 @@ public class QuizDTO {
 
     private Long id;
 
-    @NotBlank(message = "Quiz name cannot be blank")
     private String name;
 
     private String description;
 
-    @PastOrPresent(message = "Create date must be in the past or present")
     private LocalDate createDate;
 
-    @NotNull(message = "Quiz time cannot be null")
     private LocalTime quizTime;
 
     private Boolean inUse;
 
-    private List<OpenEnd> openEndList;
-
     private List<MultipleChoice> multipleChoiceList;
-
-    private List<FillBlank> fillBlankList;
 
     private List<TrueFalse> trueFalseList;
 
-    @NotNull(message = "Topic cannot be null")
-    private Topic topic;
+    private List<FillBlank> fillBlankList;
+
+    private List<OpenEnd> openEndList;
+
+    private String topicName;
 
     private List<Score> scoreList;
 
-    @NotNull(message = "Quiz user cannot be null")
-    private QuizUser quizUser;
+    private Long quizUserId;
 
     public QuizDTO(Quiz quiz) {
 
         this.id = quiz.getId();
+        this.name = quiz.getName();
         this.description = quiz.getDescription();
         this.createDate = quiz.getCreateDate();
         this.quizTime = quiz.getQuizTime();
@@ -61,9 +57,9 @@ public class QuizDTO {
         this.multipleChoiceList = quiz.getMultipleChoiceList();
         this.fillBlankList = quiz.getFillBlankList();
         this.trueFalseList = quiz.getTrueFalseList();
-        this.topic = quiz.getTopic();
+        this.topicName = quiz.getTopic().getName();
         //this.scoreList = quiz.getScoreList();
-        //this.quizUser = quiz.getQuizUser();
+        this.quizUserId = quiz.getQuizUser().getId();
 
     }
 }

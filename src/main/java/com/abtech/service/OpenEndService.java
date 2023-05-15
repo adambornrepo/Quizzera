@@ -1,6 +1,7 @@
 package com.abtech.service;
 
 import com.abtech.domain.OpenEnd;
+import com.abtech.domain.Quiz;
 import com.abtech.dto.OpenEndDTO;
 import com.abtech.exception.ConnectedResourceException;
 import com.abtech.exception.ResourceNotFoundException;
@@ -27,12 +28,13 @@ public class OpenEndService {
         return new OpenEndDTO(openEndRepository.save(openEnd));
     }
 
-    public void updateOpenEndQuestion(Long id) {
+    public void updateOpenEndQuestion(Long id, Quiz quiz) {
 
         OpenEnd openEnd = getById(id);
 
         if (!openEnd.getInUse()) {
             openEnd.setInUse(true);
+            openEnd.setQuiz(quiz);
             openEndRepository.save(openEnd);
         } else {
             throw new ConnectedResourceException("This open-end question already in use. Quiz Id : " + openEnd.getQuiz().getId());
@@ -64,5 +66,10 @@ public class OpenEndService {
         return openEndRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Open-end question not found with this id : " + id));
+    }
+
+    public boolean isValidRequest(List<Long> requestList){
+        for (Long id : requestList) if (getById(id).getInUse()) return false;
+        return true;
     }
 }

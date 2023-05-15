@@ -14,7 +14,7 @@ import lombok.Setter;
 public class TrueFalseDTO extends QuestionDTO {
 
     @NotNull(message = "Answer cannot be null")
-    private boolean answer;
+    private Boolean answer;
 
     public TrueFalseDTO(TrueFalse trueFalse) {
         super.setId(trueFalse.getId());
@@ -22,6 +22,6 @@ public class TrueFalseDTO extends QuestionDTO {
         super.setScore(trueFalse.getScore());
         super.setQuestionText(trueFalse.getQuestionText());
         super.setInUse(trueFalse.getInUse());
-        this.answer = trueFalse.isAnswer();
+        this.answer = trueFalse.getAnswer();
     }
 }

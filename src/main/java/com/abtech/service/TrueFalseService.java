@@ -1,5 +1,6 @@
 package com.abtech.service;
 
+import com.abtech.domain.Quiz;
 import com.abtech.domain.TrueFalse;
 import com.abtech.dto.TrueFalseDTO;
 import com.abtech.exception.ConnectedResourceException;
@@ -23,17 +24,18 @@ public class TrueFalseService {
         trueFalse.setQuestionType(questionDTO.getQuestionType());
         trueFalse.setQuestionText(questionDTO.getQuestionText());
         trueFalse.setScore(questionDTO.getScore());
-        trueFalse.setAnswer(questionDTO.isAnswer());
+        trueFalse.setAnswer(questionDTO.getAnswer());
 
         return new TrueFalseDTO(trueFalseRepository.save(trueFalse));
     }
 
-    public void updateTrueFalseQuestion(Long id) {
+    public void updateTrueFalseQuestion(Long id, Quiz quiz) {
 
         TrueFalse trueFalse = getById(id);
 
         if (!trueFalse.getInUse()) {
             trueFalse.setInUse(true);
+            trueFalse.setQuiz(quiz);
             trueFalseRepository.save(trueFalse);
         } else {
             throw new ConnectedResourceException("This true/false question already in use. Quiz Id : " + trueFalse.getQuiz().getId());
@@ -65,6 +67,11 @@ public class TrueFalseService {
         return trueFalseRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("True/False question not found with this id : " + id));
+    }
+
+    public boolean isValidRequest(List<Long> requestList){
+        for (Long id : requestList) if (getById(id).getInUse()) return false;
+        return true;
     }
 
 }

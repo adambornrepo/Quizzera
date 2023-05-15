@@ -25,19 +25,25 @@ public class QuizController {
         return ResponseEntity.ok(quizDTOList);
     }
 
+    @GetMapping("find")
+    public ResponseEntity<?> getById(@RequestParam("id") Long id) {
+        QuizDTO quizDTO = quizService.getQuizDTOById(id);
+        return ResponseEntity.ok(quizDTO);
+    }
+
     @PostMapping
-    public ResponseEntity<?> createQuiz(@Valid @RequestBody QuizRecord quizRecord, BindingResult result){
+    public ResponseEntity<?> createQuiz(@Valid @RequestBody QuizRecord quizRecord, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body("Invalid Input");
         }
 
         QuizDTO quizDTO = quizService.createQuiz(quizRecord);
 
-        return new ResponseEntity<>("New quiz successfully created", HttpStatus.CREATED);
+        return new ResponseEntity<>(quizDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/dlt")
-    public ResponseEntity<?> deleteQuiz(@RequestParam("id") Long id){
+    public ResponseEntity<?> deleteQuiz(@RequestParam("id") Long id) {
 
         quizService.deleteQuiz(id);
 

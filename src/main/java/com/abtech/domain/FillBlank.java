@@ -19,7 +19,7 @@ public class FillBlank extends Question {
     private String answerText;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 }

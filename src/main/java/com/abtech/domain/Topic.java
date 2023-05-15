@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -27,7 +28,7 @@ public class Topic {
     private Boolean inUse = true;
 
     @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Quiz> quizSet;
+    private List<Quiz> quizList;
 
 
 }

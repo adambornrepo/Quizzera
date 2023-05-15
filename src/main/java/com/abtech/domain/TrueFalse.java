@@ -15,10 +15,10 @@ import lombok.Setter;
 @Table(name = "tbl_truefalse")
 public class TrueFalse extends Question {
 
-    private boolean answer;
+    private Boolean answer;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 

@@ -17,6 +17,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class QuizUserDTO {
 
+    private Long id;
+
     @Size(min = 2, max = 50, message = "Firstname must be between {min} and {max} characters")
     @NotBlank(message = "First name cannot be blank")
     private String firstName;
@@ -41,6 +43,7 @@ public class QuizUserDTO {
     private Boolean isActive;
 
     public QuizUserDTO(QuizUser quizUser) {
+        this.id = quizUser.getId();
         this.firstName = quizUser.getFirstName();
         this.lastName = quizUser.getLastName();
         this.age = quizUser.getAge();

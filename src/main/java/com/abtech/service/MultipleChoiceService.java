@@ -1,6 +1,7 @@
 package com.abtech.service;
 
 import com.abtech.domain.MultipleChoice;
+import com.abtech.domain.Quiz;
 import com.abtech.dto.MultipleChoiceDTO;
 import com.abtech.exception.ConnectedResourceException;
 import com.abtech.exception.ResourceNotFoundException;
@@ -31,12 +32,13 @@ public class MultipleChoiceService {
         return new MultipleChoiceDTO(multipleChoiceRepository.save(multipleChoice));
     }
 
-    public void updateMultipleChoiceQuestion(Long id) {
+    public void updateMultipleChoiceQuestion(Long id, Quiz quiz) {
 
         MultipleChoice multipleChoice = getById(id);
 
         if (!multipleChoice.getInUse()) {
             multipleChoice.setInUse(true);
+            multipleChoice.setQuiz(quiz);
             multipleChoiceRepository.save(multipleChoice);
         } else {
             throw new ConnectedResourceException("This multiple choice question already in use. Quiz Id : " + multipleChoice.getQuiz().getId());
@@ -68,6 +70,11 @@ public class MultipleChoiceService {
         return multipleChoiceRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Multiple choice question not found with this id : " + id));
+    }
+
+    public boolean isValidRequest(List<Long> requestList){
+        for (Long id : requestList) if (getById(id).getInUse()) return false;
+        return true;
     }
 
 }
