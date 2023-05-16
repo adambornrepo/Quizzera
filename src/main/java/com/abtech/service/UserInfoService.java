@@ -2,15 +2,16 @@ package com.abtech.service;
 
 import com.abtech.domain.QuizUser;
 import com.abtech.domain.UserInfo;
-import com.abtech.dto.QuizUserDTO;
-import com.abtech.dto.RegistrationDTO;
-import com.abtech.dto.UserInfoDTO;
+import com.abtech.dto.*;
+import com.abtech.exception.AuthenticationException;
 import com.abtech.exception.ResourceNotFoundException;
 import com.abtech.exception.UniqueValueAlreadyExistException;
 import com.abtech.repository.QuizUserRepository;
 import com.abtech.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -93,5 +94,17 @@ public class UserInfoService {
                 .orElseThrow(() -> new ResourceNotFoundException("No user info with this username : " + username));
 
         return userInfo.getQuizUser();
+    }
+
+    public LoginResponse authenticateUser(LoginDTO loginDTO) {
+        Optional<UserInfo> userInfo = userInfoRepository
+                .findByUsername(loginDTO.getUsername());
+
+        if (userInfo.isEmpty() || !userInfo.get().getPassword().equals(loginDTO.getPassword())) {
+            throw new AuthenticationException("Username and/or password incorrect");
+        }
+        UserInfo responseInfo = userInfo.get();
+
+        return new LoginResponse(responseInfo);
     }
 }

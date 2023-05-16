@@ -1,16 +1,18 @@
 package com.abtech.controller;
 
-import com.abtech.dto.QuizUserDTO;
-import com.abtech.dto.RegistrationDTO;
-import com.abtech.dto.UserInfoDTO;
+import com.abtech.dto.*;
 import com.abtech.service.QuizUserService;
 import com.abtech.service.UserInfoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
@@ -56,7 +58,12 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> createUser(@Valid @RequestBody RegistrationDTO registrationDTO, BindingResult result) {
         if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body("Invalid Input");
+            List<String> errorMessages = result.getAllErrors()
+                    .stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.badRequest().body(errorMessages);
         }
 
         QuizUserDTO quizUserDTO = userInfoService.createUser(registrationDTO);
@@ -71,5 +78,19 @@ public class UserController {
         return ResponseEntity.ok("User successfully deleted");
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> createUser(@Valid @RequestBody LoginDTO loginDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            List<String> errorMessages = result.getAllErrors()
+                    .stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.toList());
 
+            return ResponseEntity.badRequest().body(errorMessages);
+        }
+
+        LoginResponse loginResponse = userInfoService.authenticateUser(loginDTO);
+
+        return ResponseEntity.ok(loginResponse);
+    }
 }
