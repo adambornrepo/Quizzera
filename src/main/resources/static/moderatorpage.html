@@ -51,7 +51,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Corso</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a> 
+        <a class="navbar-brand logo-image" href="/quizzerpage.html"><img src="images/logo.svg" alt="alternative"></a> 
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,87 +62,113 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#register">REGISTER <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#description">ABOUT US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#loginform">LOGIN</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
-                </li>
+                <li class="nav-item"  id="fullname"></li>
             </ul>
         </div>
     </nav> <!-- end of navbar -->
     <!-- end of navigation -->
-
-
-    <h1>BURARI MOD SAYFASI</h1>
-
-
-    <!-- Contact -->
-    <div id="contact" class="form-3">
+ 
+    <div id="description" class="basic-2"></div><!--fill-->
+    
+    <div id="description" class="basic-2" style="background-color: rgb(218, 218, 218);">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="text-container">
-                        <h2>Contact Details</h2>
-                        <p>For questions please get in touch using the contact details below. For any questions use the form.</p>
-                        <h3>Main Office Location</h3>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="media">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="media-body">38 AbTech, San Francisco, CA 94043, US</div>
-                            </li>
-                            <li class="media">
-                                <i class="fas fa-envelope"></i>
-                                <div class="media-body"><a class="light-gray" href="mailto:contact@quizzera.com">contact@quizzera.com</a></div>
-                            </li>
-                        </ul>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-6">
+                <div class="col-lg-12">
+    
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">PROFILE</a>
+                                <a class="nav-link" id="v-pills-quiz-tab" data-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">QUIZ</a>
+                                <a class="nav-link" id="v-pills-scores-tab" data-toggle="pill" href="#v-pills-scores" role="tab" aria-controls="v-pills-scores" aria-selected="false">SCORES</a>
+                                <a class="nav-link" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-logout" aria-selected="false">LOGOUT</a>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                
+                                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                    <!-- Profile Form -->
+                                    <div class="form-container">
+                                        <form id="profileForm" data-toggle="validator" data-focus="false">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="pfirstname" name="pfirstname" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pfirstname">Firstname</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="plastname" name="plastname" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="plastname">Lastname</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control-input text-right" id="pemail" name="pemail" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pemail">Email address</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="date" class="form-control-input" id="pbirthdate" name="pbirthdate" required>
+                                                <label class="label-control" for="pbirthdate"></label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control-input" id="pgender" name="pgender">
+                                                    <option value="unspecified">UNSPECIFIED</option>
+                                                    <option value="male">MALE</option>
+                                                    <option value="female">FEMALE</option>
+                                                </select>
+                                                <label class="label-control" for="pgender"></label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
 
-                    <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Your message</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I have read and agree to Quizzera's stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">SUBMIT</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
-                    </form>
-                    <!-- end of contact form -->
+                                            <!--Username & Password-->
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="pusername" name="pusername" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pusername">Username</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control-input text-right" id="ppassword" name="ppassword" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="ppassword">Password</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <button type="submit" class="form-control-submit-button">UPDATE</button>
+                                            </div>
+                                            <div class="form-message">
+                                                <div id="rmsgSubmit" class="h3 text-center hidden"></div>
+                                            </div>
+                                        </form>
+                                    </div> <!-- end of form-container -->
+                                    <!-- end of profile form -->
+                                </div>
+                                
+                                <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div id="userInfo"></div>
+                                            </div> <!-- end of col -->
+                                        </div> <!-- end of row -->
+                                    </div> <!-- end of container -->
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-scores" role="tabpanel" aria-labelledby="v-pills-scores-tab">...</div>
+                                
+                                <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
-    </div> <!-- end of form-3 -->
-    <!-- end of contact -->
-
+    </div> <!-- end of basic-2 -->
+    
+    <!-- end of description -->
 
     <!-- Footer -->
     <div class="footer">
@@ -225,5 +251,6 @@
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="js/preloadform.js"></script> <!-- PreLoad scripts -->
 </body>
 </html>

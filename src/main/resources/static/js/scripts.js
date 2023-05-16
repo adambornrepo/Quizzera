@@ -439,8 +439,8 @@
         var username = sessionStorage.getItem('username');
         var email = sessionStorage.getItem('email');
         var role = sessionStorage.getItem('role');
-        var firstName = sessionStorage.getItem('firstName');
-        var lastName = sessionStorage.getItem('lastName');
+        var firstName = sessionStorage.getItem('firstName').toUpperCase();
+        var lastName = sessionStorage.getItem('lastName').toUpperCase();
     
         // Bilgileri göster
         var userInfoDiv = $('#userInfo');
@@ -451,7 +451,14 @@
             <p>Role: ${role}</p>
             <p>First Name: ${firstName}</p>
             <p>Last Name: ${lastName}</p>
+ 
         `);
+
+        var fullnameSpan = $('#fullname');
+        fullnameSpan.html(`
+        <a class="text-warning" >${firstName}  ${lastName}</a>
+    `);
+
     });
     
 

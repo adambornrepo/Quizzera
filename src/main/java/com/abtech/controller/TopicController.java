@@ -1,6 +1,6 @@
 package com.abtech.controller;
 
-import com.abtech.domain.Topic;
+
 import com.abtech.dto.TopicDTO;
 import com.abtech.dto.TopicRecord;
 import com.abtech.service.TopicService;

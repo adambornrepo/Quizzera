@@ -51,7 +51,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Corso</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a> 
+        <a class="navbar-brand logo-image" href="/quizzerpage.html"><img src="images/logo.svg" alt="alternative"></a> 
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,156 +62,113 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#register">REGISTER <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#description">ABOUT US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#loginform">LOGIN</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
-                </li>
+                <li class="nav-item"  id="fullname"></li>
             </ul>
         </div>
     </nav> <!-- end of navbar -->
     <!-- end of navigation -->
-
-
-
+ 
+    <div id="description" class="basic-2"></div><!--fill-->
     
-    <!-- Description -->
-    <div id="description" class="basic-2">
+    <div id="description" class="basic-2" style="background-color: rgb(218, 218, 218);">
         <div class="container">
             <div class="row">
-                <br><br><br>
-                <h1>BURASI QUIZZER PAGE</h1>
-                <br><br>
-                <div id="userInfo"></div>
                 <div class="col-lg-12">
-                    <h2>Quizzera: Unleash Your Inner Quiz Master and Connect with a Global Community!</h2>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <ul class="list-unstyled li-space-lg first">
-                        <li class="media">
-                            <i class="bullet">1</i>
-                            <div class="media-body">
-                                <h4>Create Personalized Quizzes</h4>
-                                <p> Quizzera offers you the opportunity to unleash your creativity and knowledge by creating your own quizzes. Tailor the questions to your preferences, whether it's about history, science, movies, or any other topic that excites you. Let your imagination run wild and share your quizzes with friends, family, or the Quizzera community.</p>
+    
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">PROFILE</a>
+                                <a class="nav-link" id="v-pills-quiz-tab" data-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">QUIZ</a>
+                                <a class="nav-link" id="v-pills-scores-tab" data-toggle="pill" href="#v-pills-scores" role="tab" aria-controls="v-pills-scores" aria-selected="false">SCORES</a>
+                                <a class="nav-link" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-logout" aria-selected="false">LOGOUT</a>
                             </div>
-                        </li>
-                        <li class="media">
-                            <i class="bullet">2</i>
-                            <div class="media-body">
-                                <h4>Track Responses</h4>
-                                <p>Ever wondered how well your friends or participants fared in your quizzes? With Quizzera, you can easily track responses and see how others performed. Gain insights into their answers, review the results, and discover who truly knows their stuff. It's a fantastic way to engage with others and spark friendly competition.</p>
+                        </div>
+                        <div class="col-10">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                
+                                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                    <!-- Profile Form -->
+                                    <div class="form-container">
+                                        <form id="profileForm" data-toggle="validator" data-focus="false">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="pfirstname" name="pfirstname" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pfirstname">Firstname</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="plastname" name="plastname" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="plastname">Lastname</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control-input text-right" id="pemail" name="pemail" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pemail">Email address</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="date" class="form-control-input" id="pbirthdate" name="pbirthdate" required>
+                                                <label class="label-control" for="pbirthdate"></label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control-input" id="pgender" name="pgender">
+                                                    <option value="unspecified">UNSPECIFIED</option>
+                                                    <option value="male">MALE</option>
+                                                    <option value="female">FEMALE</option>
+                                                </select>
+                                                <label class="label-control" for="pgender"></label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+
+                                            <!--Username & Password-->
+                                            <div class="form-group">
+                                                <input type="text" class="form-control-input text-right" id="pusername" name="pusername" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="pusername">Username</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control-input text-right" id="ppassword" name="ppassword" style="padding-right: 10px;" required>
+                                                <label class="label-control" for="ppassword">Password</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="form-control-submit-button">UPDATE</button>
+                                            </div>
+                                            <div class="form-message">
+                                                <div id="rmsgSubmit" class="h3 text-center hidden"></div>
+                                            </div>
+                                        </form>
+                                    </div> <!-- end of form-container -->
+                                    <!-- end of profile form -->
+                                </div>
+                                
+                                <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div id="userInfo"></div>
+                                            </div> <!-- end of col -->
+                                        </div> <!-- end of row -->
+                                    </div> <!-- end of container -->
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-scores" role="tabpanel" aria-labelledby="v-pills-scores-tab">...</div>
+                                
+                                <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">...</div>
                             </div>
-                        </li>
-                        <li class="media">
-                            <i class="bullet">3</i>
-                            <div class="media-body">
-                                <h4>Participate and Challenge Yourself</h4>
-                                <p>Quizzera isn't just about creating quizzes—it's also about participating in the vast collection of quizzes crafted by other users. Explore an extensive library of topics and put your knowledge to the test. Challenge yourself to beat the high scores and climb the leaderboard. With a wide range of quizzes available, there's always something new to learn and discover.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div> <!-- end of col -->
-                <div class="col-lg-6">
-                    <ul class="list-unstyled li-space-lg second">
-                        <li class="media">
-                            <i class="bullet">4</i>
-                            <div class="media-body">
-                                <h4>Improve Your Knowledge</h4>
-                                <p>Quizzera isn't just for entertainment—it's an educational platform that allows you to expand your knowledge base. Dive into quizzes covering various subjects and broaden your understanding of the world. Whether you want to brush up on your history, delve into scientific concepts, or explore pop culture, Quizzera has got you covered.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <i class="bullet">5</i>
-                            <div class="media-body">
-                                <h4>Interactive and Engaging Experience</h4>
-                                <p>Quizzera ensures a captivating and interactive quiz experience. With its user-friendly interface, intuitive design, and engaging features, the app keeps you hooked and motivated. Experience the thrill of answering questions, unlocking achievements, and earning badges as you progress through different quizzes.</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <i class="bullet">6</i>
-                            <div class="media-body">
-                                <h4>Connect with Like-minded Individuals</h4>
-                                <p>Quizzera isn't just a quiz app; it's a community of passionate learners and trivia enthusiasts. Engage in discussions, share your quiz creations, and connect with like-minded individuals from around the globe. Expand your network, make new friends, and exchange knowledge in a friendly and supportive environment.</p>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                </div>
+    
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of basic-2 -->
+    
     <!-- end of description -->
-
-
-
-    <!-- Contact -->
-    <div id="contact" class="form-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="text-container">
-                        <h2>Contact Details</h2>
-                        <p>For questions please get in touch using the contact details below. For any questions use the form.</p>
-                        <h3>Main Office Location</h3>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="media">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="media-body">38 AbTech, San Francisco, CA 94043, US</div>
-                            </li>
-                            <li class="media">
-                                <i class="fas fa-envelope"></i>
-                                <div class="media-body"><a class="light-gray" href="mailto:contact@quizzera.com">contact@quizzera.com</a></div>
-                            </li>
-                        </ul>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-6">
-
-                    <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Your message</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I have read and agree to Quizzera's stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">SUBMIT</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
-                    </form>
-                    <!-- end of contact form -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form-3 -->
-    <!-- end of contact -->
-
 
     <!-- Footer -->
     <div class="footer">
@@ -294,5 +251,6 @@
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="js/preloadform.js"></script> <!-- PreLoad scripts -->
 </body>
 </html>
