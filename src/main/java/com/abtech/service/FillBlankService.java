@@ -55,7 +55,7 @@ public class FillBlankService {
     }
 
     public List<FillBlankDTO> getAllUnused() {
-        return fillBlankRepository.findAll().stream().map(FillBlankDTO::new).toList();
+        return fillBlankRepository.findAll().stream().filter(f-> !f.getInUse()).map(FillBlankDTO::new).toList();
     }
 
     public List<FillBlank> getAllById(List<Long> idList) {

@@ -22,11 +22,11 @@ public class QuizUserService {
     public QuizUserDTO updateQuizUser(String username, QuizUserDTO quizUserDTO) {
         QuizUser quizUser = userInfoService.getQuizUserByUsername(username);
 
-        quizUser.setFirstName(quizUser.getFirstName());
-        quizUser.setLastName(quizUser.getLastName());
-        quizUser.setAge(quizUser.getAge());
-        quizUser.setBirthdate(quizUser.getBirthdate());
-        quizUser.setGender(quizUser.getGender());
+        quizUser.setFirstName(quizUserDTO.getFirstName());
+        quizUser.setLastName(quizUserDTO.getLastName());
+        quizUser.setAge(quizUserDTO.getAge());
+        quizUser.setBirthdate(quizUserDTO.getBirthdate());
+        quizUser.setGender(quizUserDTO.getGender());
         quizUser.setIsActive(quizUser.getIsActive());
 
         QuizUser save = quizUserRepository.save(quizUser);

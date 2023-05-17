@@ -95,7 +95,7 @@ public class QuizService {
         if (quiz.getInUse()) {
             quiz.setInUse(false);
         } else {
-            throw new StatusMismatchException("Quiz could not be deleted. Because the quiz is not in use");
+            throw new StatusMismatchException("Quiz could not be deleted. Because the quiz is not active anymore");
         }
 
         quizRepository.save(quiz);

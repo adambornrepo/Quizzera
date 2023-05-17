@@ -25,7 +25,7 @@ public class QuizController {
         return ResponseEntity.ok(quizDTOList);
     }
 
-    @GetMapping("find")
+    @GetMapping("/find")
     public ResponseEntity<?> getById(@RequestParam("id") Long id) {
         QuizDTO quizDTO = quizService.getQuizDTOById(id);
         return ResponseEntity.ok(quizDTO);

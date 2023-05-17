@@ -27,8 +27,6 @@ public class QuizUserDTO {
     @NotBlank(message = "Last name cannot be blank")
     private String lastName;
 
-    @NotNull(message = "Age cannot be null")
-    @Positive(message = "Age must be positive")
     private Integer age;
 
     @NotNull(message = "Birthdate cannot be null")
@@ -39,7 +37,6 @@ public class QuizUserDTO {
     @NotNull(message = "Gender cannot be null")
     private Gender gender;
 
-    @NotNull(message = "isActive cannot be null")
     private Boolean isActive;
 
     public QuizUserDTO(QuizUser quizUser) {

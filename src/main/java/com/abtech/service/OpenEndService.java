@@ -55,7 +55,7 @@ public class OpenEndService {
     }
 
     public List<OpenEndDTO> getAllUnused() {
-        return openEndRepository.findAll().stream().map(OpenEndDTO::new).toList();
+        return openEndRepository.findAll().stream().filter(f-> !f.getInUse()).map(OpenEndDTO::new).toList();
     }
 
     public List<OpenEnd> getAllById(List<Long> idList) {

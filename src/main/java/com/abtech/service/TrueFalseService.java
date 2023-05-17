@@ -56,7 +56,7 @@ public class TrueFalseService {
     }
 
     public List<TrueFalseDTO> getAllUnused() {
-        return trueFalseRepository.findAll().stream().map(TrueFalseDTO::new).toList();
+        return trueFalseRepository.findAll().stream().filter(f-> !f.getInUse()).map(TrueFalseDTO::new).toList();
     }
 
     public List<TrueFalse> getAllById(List<Long> idList) {

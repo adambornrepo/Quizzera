@@ -59,7 +59,7 @@ public class MultipleChoiceService {
     }
 
     public List<MultipleChoiceDTO> getAllUnused() {
-        return multipleChoiceRepository.findAll().stream().map(MultipleChoiceDTO::new).toList();
+        return multipleChoiceRepository.findAll().stream().filter(f-> !f.getInUse()).map(MultipleChoiceDTO::new).toList();
     }
 
     public List<MultipleChoice> getAllById(List<Long> idList) {

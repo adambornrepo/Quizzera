@@ -9,6 +9,7 @@ import com.abtech.repository.*;
 import com.abtech.service.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public class QuizzeraCommandLineRunner implements CommandLineRunner {
         UserInfo userAdmin = new UserInfo();
 
         userAdmin.setUsername("adamborn");
-        userAdmin.setPassword("admin123");
+        userAdmin.setPassword(new BCryptPasswordEncoder().encode("admin123"));
         userAdmin.setEmail("adam@abtech.com");
         userAdmin.setUserRole(Role.ROLE_ADMIN);
 
@@ -54,7 +55,7 @@ public class QuizzeraCommandLineRunner implements CommandLineRunner {
         UserInfo userModerator = new UserInfo();
 
         userModerator.setUsername("johndoe");
-        userModerator.setPassword("john1234");
+        userModerator.setPassword(new BCryptPasswordEncoder().encode("john1234"));
         userModerator.setEmail("john@mod.com");
         userModerator.setUserRole(Role.ROLE_MODERATOR);
 
@@ -73,7 +74,7 @@ public class QuizzeraCommandLineRunner implements CommandLineRunner {
         UserInfo userQuizzer = new UserInfo();
 
         userQuizzer.setUsername("janedoe");
-        userQuizzer.setPassword("jane1234");
+        userQuizzer.setPassword(new BCryptPasswordEncoder().encode("jane1234"));
         userQuizzer.setEmail("jane@janes.com");
         userQuizzer.setUserRole(Role.ROLE_QUIZZER);
 

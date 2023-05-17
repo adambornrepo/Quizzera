@@ -9,6 +9,7 @@ import com.abtech.exception.UniqueValueAlreadyExistException;
 import com.abtech.repository.QuizUserRepository;
 import com.abtech.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -47,7 +48,7 @@ public class UserInfoService {
         }
 
         userInfo.setUsername(userInfoDTO.getUsername());
-        userInfo.setPassword(userInfoDTO.getPassword());
+        userInfo.setPassword(new BCryptPasswordEncoder().encode(userInfoDTO.getPassword()));
         userInfo.setEmail(userInfoDTO.getEmail());
         userInfo.setUserRole(userInfoDTO.getUserRole());
         userInfo.setIsActive(userInfoDTO.getIsActive());
@@ -65,7 +66,10 @@ public class UserInfoService {
             throw new UniqueValueAlreadyExistException("Email is already in use : " + registrationDTO.getEmail());
         }
 
-        UserInfo savedInfo = userInfoRepository.save(registrationDTO.buildUserInfo());
+        UserInfo userInfo = registrationDTO.buildUserInfo();
+        userInfo.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
+        UserInfo savedInfo = userInfoRepository.save(userInfo);
+
         QuizUser quizUser = registrationDTO.buildQuizUser();
         quizUser.setUserInfo(savedInfo);
         QuizUser save = quizUserRepository.save(quizUser);
@@ -100,7 +104,8 @@ public class UserInfoService {
         Optional<UserInfo> userInfo = userInfoRepository
                 .findByUsername(loginDTO.getUsername());
 
-        if (userInfo.isEmpty() || !userInfo.get().getPassword().equals(loginDTO.getPassword())) {
+
+        if (userInfo.isEmpty() || !new BCryptPasswordEncoder().matches(loginDTO.getPassword(), userInfo.get().getPassword())) {
             throw new AuthenticationException("Username and/or password incorrect");
         }
         UserInfo responseInfo = userInfo.get();
